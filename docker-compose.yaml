@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  app:
+    image: golang:latest
+    container_name: project-app
+    volumes:
+      - ./app:/app
+    ports:
+      - "8080:8080"
+    command: go run main.go # Change this based on your project structure and entry point
+
+  mongodb:
+    image: mongo:latest
+    container_name: project-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: examplepassword
+      MONGO_INITDB_DATABASE: mydatabase
+
+  redis:
+    image: redis:latest
+    container_name: my-redis
+    ports:
+      - "6379:6379"
